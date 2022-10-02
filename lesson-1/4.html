@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Необязательное задание.
+
+Необходимо от пользователя получить число.
+Необходимо вывести разряды числа, а именно: количество сотен, десятков и единиц.
+
+Пример:
+Пользователь ввел число 163. Программа должна вывести:
+"В числе 163 количество сотен: 1, десятков: 6, единиц: 3"
+
+Пример 2:
+Пользователь ввел число 74. Программа должна вывести:
+"В числе 74 количество сотен: 0, десятков: 7, единиц: 4"
+
+Пример 3:
+Пользователь ввел число 9537. Программа должна вывести:
+"В числе 9537 количество сотен: 5, десятков: 3, единиц: 7"
+
+Уточнение: пользователь всегда вводит корректное положительное целое число.
+-->
+<script>
+  "use strict";
+
+  /* Вариант 1: самый очевидный и простой */
+  const userNumber = prompt("Введите число");
+
+  const onesCount = userNumber % 10;
+  const decadesCount = parseInt(userNumber / 10) % 10;
+  const hundredsCount = parseInt(userNumber / 100) % 10;
+
+  alert(`В числе ${userNumber} количество сотен: ${hundredsCount}, десятков: ${decadesCount}, единиц: ${onesCount}.`);
+
+  /*
+    Вариант 2: использовать строки вместо делений и парсинга.
+
+    const userNumberStr = `${prompt("Введите число")}`;
+    const numLength = userNumberStr.length;
+    const onesCount = userNumberStr[numLength - 1];
+    const decadesCount = numLength > 1 ? userNumberStr[numLength - 2] : 0;
+    const hundredsCount = numLength > 2 ? userNumberStr[numLength - 3] : 0;
+
+    alert(`В числе ${userNumberStr} количество сотен: ${hundredsCount}, десятков: ${decadesCount}, единиц: ${onesCount}.`)
+  */
+
+  /*
+  Вариант 3:  использовать функцию / лямбду, которая позволит рассчитать количество
+              разрядов для любого положительного числа и вернет результат
+              в виде массива.
+
+  let getNumberDigits = (number) => {
+    let divider = 1;
+    let result = [];
+
+    while (true) {
+      const divisionResult = parseInt(number / divider);
+
+      if (divisionResult === 0) {
+        break;
+      }
+
+      result.push(divisionResult % 10);
+      divider *= 10;
+    }
+
+    return result;
+  };
+*/
+
+</script>
+</body>
+</html>
