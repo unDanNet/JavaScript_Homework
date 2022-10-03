@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо скопировать и вставить в данный скрипт все функции из 4 задания.
+Необходимо реализовать функцию:
+mathOperation(arg1, arg2, operation);
+Параметры:
+arg1 - первое число.
+arg2 - второе число.
+operation - строка, которая содержит один символ из: "+", "-", "*", "/".
+Функция mathOperation должна вернуть результат операции, который был передан в
+параметр operation для двух первых аргументов (arg1 и arg2).
+Функция mathOperation должна использовать для вычисления функции из 4 задания.
+
+Примеры вызова функции:
+console.log(mathOperation(5, 3, "+")); // 8
+console.log(mathOperation(5, 3, ":)")); // NaN
+
+Функции mathOperation всегда передаются корректные числа, проверки на NaN,
+Infinity делать не нужно, однако, в случае если был передан некорректный
+аргумент в параметр operation, необходимо вернуть NaN.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+<script>
+  "use strict";
+
+  /**
+   * Performs a mathematical operation depending on the specified operation type.
+   * In case if the specified operation type is not allowed theoperation would 
+   * not be performed. Use {@link getAllowedMathOperations} to get all allowed 
+   * math operations.
+   * @param arg1 the first operand of the operation.
+   * @param arg2 the second operand of the operation.
+   * @return the result of the specified operation, or NaN in case if the
+   * specified operation type is not allowed.
+  */
+  function mathOperation(arg1, arg2, operation) {
+    const AllowedOperations = getAllowedMathOperations();
+
+    switch (operation) {
+      case AllowedOperations.ADD: 
+        return getSumOf(arg1, arg2);
+      case AllowedOperations.SUBTRACT: 
+        return getDifferenceOf(arg1, arg2);
+      case AllowedOperations.MULTIPLY: 
+        return getProductOf(arg1, arg2);
+      case AllowedOperations.DIVIDE: 
+        return getRelationOf(arg1, arg2);
+      default:
+        return NaN;
+    }
+  }
+
+  /**
+   * Gets all allowed math operations.
+   * @return an object storing the allowed operations.
+  */
+  function getAllowedMathOperations() {
+    return {
+      ADD: '+', 
+      SUBTRACT: '-', 
+      MULTIPLY: '*',
+      DIVIDE: '/'
+    }
+  }
+
+  /**
+   * Adds two specified numbers.
+   * @param a the first operand of the operation.
+   * @param b the second operand of the operation.
+   * @return the result of the addition
+  */
+  function getSumOf(a, b) {
+    return a + b;
+  }
+
+  /**
+   * Subtracts the smallest of specified numbers from the largest.
+   * @param a the first operand of the operation.
+   * @param b the script operand of the operation.
+   * @return the result of the subtraction.
+  */
+  function getDifferenceOf(a, b) {
+    return a > b ? a - b : b - a;
+  }
+
+  /**
+   * Multiplies two specified numbers.
+   * @param a the first operand of the operation.
+   * @param b the second operand of the operation.
+   * @return the result of the multiplying.
+  */
+  function getProductOf(a, b) {
+    return a * b;
+  }
+
+  /**
+   * Divides two specified numbers.
+   * @param a the first operand of the operation.
+   * @param b the second operand of the operation.
+   * @return the result of the division.
+  */
+  function getRelationOf(a, b) {
+    return a / b;
+  }
+</script>
+</body>
+</html>
