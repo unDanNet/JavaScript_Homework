@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Необязательное задание.
+
+Необходимо создать функцию getDigitsOfNumber, которая принимает целое
+положительное число в диапазоне от 0 до 1000.
+Функция должна вернуть обычный объект с тремя свойствами:
+1. units - содержит число, количество единиц в параметре функции.
+2. dozens - содержит число, количество десятков в параметре функции.
+3. hundreds - содержит число, количество сотен в параметре функции.
+Если функции было передано не целое положительное число, либо число в ином
+диапазоне, нежели задано в условии, функция должна вывести в консоль информацию
+об ошибке и вернуть пустой объект.
+Необходимо также прописать jsdoc для данной функции.
+
+Подсказка:
+У объекта console есть разные методы, мы часто используем console.log для того
+чтобы вывести в консоль какое-то значение, однако есть и другие методы, найдите
+в интернете какие методы существуют и используйте "правильный метод" в нужном
+месте. Обратите внимание что функция не должна выбрасывать ошибку, она должна
+только вывести в консоль информацию о том, что что-то пошло не так.
+Обратите внимание на слова "от 0 до 1000", это означает диапазон [0, 999], что
+можно прочитать как "от нуля до 999 включительно".
+-->
+<script>
+  "use strict";
+
+  /**
+   * Constructor for objects to store amount of each digit in a
+   * non-negative integer number in range [0, 999].
+   * @param {Number} units amount of units in the number.
+   * @param {Number} dozens amount of dozens in the number.
+   * @param {Number} hundreds amount of hundreds in the number.
+   * @return {Object}
+  */
+  function DigitsOfNumber(units, dozens, hundreds) {
+    this.units = units;
+    this.dozens = dozens;
+    this.hundreds = hundreds;
+  }
+
+  /**
+   * Counts digits of the specified non-negative integer number.
+   * @param {Number} number the number to count digits for, must be a
+   * non-negative integer value in [0, 999] range.
+   * @returns {Object} an object storing the specified number's digits count -
+   * an instance of {@link DigitsOfNumber}.
+  */
+  function getDigitsOfNumber(number) {
+    /* 
+    Do not correctly handles numbers with e-16 precision... 
+    For example, 5.0000000000000004 and less will be treated as an integer,
+    but 5.0000000000000005 and more will be treated as not an integer 
+    */
+    if (!Number.isInteger(number)) {
+      console.error(`The specified value ${number} is not an integer number!`);
+      return {};
+    }
+
+    if (number < 0 || number >= 1000 ) {
+      console.error(`The specified value ${number} is not in [0, 999] range!`);
+      return {};
+    }
+
+    return new DigitsOfNumber(
+      getLastDigitOf(number),
+      getLastDigitOf(number / 10),
+      getLastDigitOf(number / 100)
+    );
+  }
+
+  /**
+   * Gets the last digit of the specified number.
+   * @param {Number} number the number to get the last digit of.
+   * @return {Number} the last digit of the specified number.
+  */
+  function getLastDigitOf(number) {
+    return Number.parseInt(number) % 10;
+  }
+
+</script>
+</body>
+</html>
