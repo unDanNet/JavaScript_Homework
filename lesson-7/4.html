@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Необязательное задание.
+
+Необходимо реализовать функцию-конструктор Rectangle.
+-->
+<script>
+  "use strict";
+
+  /**
+   * Returns the rectangle object with width and height parameters and
+   * getArea() method.
+   *
+   * @param {number} width - Rectangle width
+   * @param {number} height - Rectangle height
+   * @return {Rectangle}
+   */
+  function Rectangle(width, height) {
+    if (Number.isNaN(Number.parseFloat(width))) {
+      throw new Error("Rectangle width must be a number.");
+    }
+
+    if (Number.isNaN(Number.parseFloat(height))) {
+      throw new Error("Rectangle height must be a number.");
+    }
+
+    this.width = Number.parseFloat(width);
+    this.height = Number.parseFloat(height);
+  }
+
+  Rectangle.prototype.getArea = function() {
+    return this.width * this.height;
+  }
+
+  const r = new Rectangle(10, 20);
+  console.log(r.width); // 10
+  console.log(r.height); // 20
+  console.log(r.getArea()); // 200
+</script>
+</body>
+</html>
